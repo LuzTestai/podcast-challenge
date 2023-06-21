@@ -1,0 +1,19 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+    padding: 10px;
+    border-bottom: solid 1px #a0a1ff;
+    margin-bottom: 30px;
+  }
+  
+  .navbar .title {
+    color: #a0a1ff;
+    margin: 0;
+  }
+  
+  .navbar .description {
+    margin: 0;
+  }
+  

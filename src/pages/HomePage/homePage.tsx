@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchPodcast } from '../store/actions/podcastActions';
-import CardProduct from '../components/CardProduct/CardProduct';
+import { fetchPodcast } from '../../store/actions/podcastActions';
+import CardProduct from '../../components/CardProduct/CardProduct';
 import styles from "./homePage.module.css";
 interface PodcastState {
     podcasts: any[]; // Cambia 'any[]' por el tipo real de tus podcasts si lo conoces
