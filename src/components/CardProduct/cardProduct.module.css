@@ -10,6 +10,7 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     justify-content: space-evenly;
     margin: 40px 8px;
+    cursor: pointer;
   }
   
   .card .image {
@@ -37,5 +38,10 @@
     margin-top: 5px;
     text-align: center;
     font-size: 13px;
+  }
+
+  .linkUnstyled {
+      color: inherit;
+      text-decoration: none;
   }
   

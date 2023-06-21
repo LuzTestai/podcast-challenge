@@ -4,7 +4,7 @@ import { fetchPodcast } from '../../store/actions/podcastActions';
 import CardProduct from '../../components/CardProduct/CardProduct';
 import styles from "./homePage.module.css";
 interface PodcastState {
-    podcasts: any[]; // Cambia 'any[]' por el tipo real de tus podcasts si lo conoces
+    podcasts: any[];
     loading: boolean;
     error: string | null;
   }
@@ -32,6 +32,7 @@ const HomePage = () => {
         console.log(podcast)
         return (
             <CardProduct 
+            id={podcast.id.attributes['im:id']}
             title={podcast.title.label}
             autor={podcast['im:artist'].label}
             image={podcast['im:image'][1].label}
