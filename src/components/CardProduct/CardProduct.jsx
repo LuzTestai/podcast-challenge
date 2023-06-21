@@ -1,14 +1,15 @@
 import styles from "./cardProduct.module.css";
+import { cortarStrPorGuionOComa } from '../../utils';
 
-const CardProduct = () => {
+const CardProduct = ({title, autor, image }) => {
     return (
         <div>
             <div className={styles.card}>
                 <div className={styles.image}>
-                    <img src="ruta_de_la_imagen.jpg" alt="Imagen de la tarjeta"/>
+                    <img src={image} alt="Imagen de la tarjeta"/>
                 </div>
-                    <h2 className={styles.title}>Título de la tarjeta</h2>
-                    <p className={styles.description}>Descripción de la tarjeta</p>
+                    <h2 className={styles.title}>{cortarStrPorGuionOComa(title)}</h2>
+                    <p className={styles.description}>{autor}</p>
             </div>
         </div>
     )

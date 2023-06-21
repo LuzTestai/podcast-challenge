@@ -1,16 +1,20 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import CardProduct from './components/CardProduct/CardProduct';
+import { Provider } from 'react-redux';
+import store from './store';
+import HomePage from './pages/homePage';
 
 function App() {
   return (
-    <div>
-    <BrowserRouter>
-            <Routes>
-                <Route path="/" element={< CardProduct />} />
-            </Routes>
-    </BrowserRouter>
-</div>
+    <Provider store={store}>
+      <div>
+        <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={< HomePage />} />
+                </Routes>
+        </BrowserRouter>
+      </div>
+      </Provider>
   );
 }
 
