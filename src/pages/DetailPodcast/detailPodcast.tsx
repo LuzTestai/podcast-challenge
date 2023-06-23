@@ -1,26 +1,37 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import CardDetail from '../../components/CardDetail/cardDetail';
-import { fetchPodcastForId } from '../../store/actions/podcastDetailActions';
+import { fetchEpisodeDetail, fetchPodcastForId } from '../../store/actions/podcastDetailActions';
 import { useDispatch, useSelector } from 'react-redux';
 
 const DetailPodcast = () => {
     const dispatch = useDispatch();
-    const { podcastDetail, loading, error } = useSelector((state: any) => state.podcastDetail);
-    const { id} = useParams();
-
-    useEffect(() => {
-        console.log({podcastDetail})
-    },[podcastDetail])
+    const navigate = useNavigate();
+    const {authorDetail, podcastDetail, loading, error } = useSelector((state: any) => state.podcastDetail);
+    const { name} = useParams();
     
     useEffect(() => {
-        id && dispatch(fetchPodcastForId(id)) && console.log('HICE EL FETCH')
-      }, [dispatch,id]);
+        name && dispatch(fetchPodcastForId(name))
+      }, [dispatch,name]);
+      
+      
+      const hiceClick = (pod) => {
+        dispatch(fetchEpisodeDetail(pod.feedUrl))
+        navigate('/episode')
+    }
 
-    console.log({id})
     return (
         <div>
-            <CardDetail />
+            <CardDetail
+            hiceClick={hiceClick}
+            title={authorDetail.title}
+            author={authorDetail.author}
+            description={authorDetail.description}
+            episodes={podcastDetail.length}
+            podcastDetail={podcastDetail}
+            image={authorDetail.image}
+            />
         </div>
     )
 }

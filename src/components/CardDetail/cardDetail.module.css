@@ -1,0 +1,65 @@
+.container {
+    display: flex;
+  }
+  
+  .column {
+    flex: 1;
+    padding: 20px;
+    max-width: 30%;
+  }
+  .columnTwo {
+    flex: 1;
+    padding: 20px;
+    max-width: 60%;
+  }
+  
+  .rectangle {
+    background-color: #f0f1fa;
+    padding: 20px;
+    width: auto;
+    max-width: 300px;
+    overflow: hidden;
+    /* white-space: nowrap; */
+    text-overflow: ellipsis;
+  }
+
+  .borderBottom {
+    border-bottom: solid 1px #c6cafb;
+    padding: 30px 0;
+  }
+  
+  
+  .rectangle img {
+    width: 100%;
+    max-width: 200px;
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .rectangle h2,
+  .rectangle p {
+    margin: 0;
+  }
+  
+  .row {
+    margin-bottom: 10px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th,
+  td {
+    border: 1px solid #ccc;
+    padding: 8px;
+  }
+  th:first-child {
+    width: 70%;
+  }
+
+  .cursorPointer {
+    cursor: pointer;
+    background-color: red;
+  }
