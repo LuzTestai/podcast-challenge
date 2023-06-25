@@ -1,9 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+export interface Podcast {
+  title: any;
+  author: string;
+  image: string;
+}
+
 const podcastSlice = createSlice({
   name: 'podcasts',
   initialState: {
-    podcasts: [],
+    podcasts: [] as Podcast[],
     loading: false,
     error: null,
   },

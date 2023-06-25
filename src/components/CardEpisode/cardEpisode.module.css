@@ -14,12 +14,11 @@
   }
   
   .rectangle {
-    background-color: #f0f1fa;
+    background-color: #abb2f952;
     padding: 20px;
     width: auto;
-    max-width: 300px;
+    max-width: 250px;
     overflow: hidden;
-    /* white-space: nowrap; */
     text-overflow: ellipsis;
   }
 
@@ -31,7 +30,7 @@
   
   .rectangle img {
     width: 100%;
-    max-width: 200px;
+    max-width: 230px;
     display: block;
     margin-bottom: 10px;
   }
@@ -56,7 +55,6 @@ padding-bottom: 15px;
 
   .cursorPointer {
     cursor: pointer;
-    background-color: red;
   }
 
   .audio {

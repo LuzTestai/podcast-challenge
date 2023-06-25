@@ -1,21 +1,24 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { fetchPodcast } from '../../store/actions/podcastActions';
 import CardProduct from '../../components/CardProduct/CardProduct';
+import Loading from '../../components/Loading';
 import styles from "./homePage.module.css";
 import { fillAuthorDetail } from '../../store/slices/detailPodcast';
 import { cortarStrPorGuionOComa } from '../../utils';
-interface PodcastState {
-    podcasts: any[];
-    loading: boolean;
-    error: string | null;
-  }
+import { RootState } from '../../store';
+import Error from '../../components/Error';
 
-const HomePage = () => {
+const HomePage = ({setLoading}) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { podcasts, loading, error } = useSelector((state: PodcastState) => state.podcasts);
+    const { podcasts, loading, error } = useSelector((state: RootState) => state.podcasts);
+    const [filterValue, setFilterValue] = useState('');
+
+    useEffect(() => {
+      setLoading(loading)
+  },[loading])
   
     useEffect(() => {
       dispatch(fetchPodcast());
@@ -31,33 +34,55 @@ const HomePage = () => {
       dispatch(fillAuthorDetail(authorData))
       navigate(`/podcast/${podcast['im:name'].label}`);
     };
-  
-    if (loading) {
-      return <div>Loading...</div>;
-    }
-  
-    if (error) {
-      return <div>Error: {error}</div>;
-    }
+
+    const handleFilterChange = (event) => {
+      setFilterValue(event.target.value);
+    };
+
+    const filteredPodcasts = podcasts.filter((podcast) => {
+      const filterText = filterValue.toLowerCase();
+      const title = podcast.title.label.toLowerCase();
+      const artist = podcast['im:artist'].label.toLowerCase();
+      return title.startsWith(filterText) || artist.startsWith(filterText);
+    });
+    
+
   return (
     <>
-    {podcasts?.entry?.length > 0 && !loading ?
-    <div className={styles.containerHome}>
-    {podcasts.entry.map((podcast) => {
-      console.log(podcast)
-        return (
-          <div onClick={() => handleLinkClick(podcast)} className={styles.clickPodcast}>
-            <CardProduct 
-            title={podcast.title.label}
-            autor={podcast['im:artist'].label}
-            image={podcast['im:image'][1].label}
-            />
+    {loading
+    ? <Loading />
+    : error
+    ? <Error navigate={navigate('/')} /> :
+        podcasts?.length > 0 && !loading ?
+        <div className={styles.container}>
+              <div className={styles.filter}>
+                <div className={styles.badge}>{filteredPodcasts.length}</div>
+                    <input
+                      type="text"
+                      value={filterValue}
+                      onChange={handleFilterChange}
+                      placeholder="Filter by title or artist"
+                      className={styles.filterInput}
+                    />
                 </div>
-        )
-    })}
-    </div>
-    : <p>No hay podcast por el momento</p>
-    	}
+          <div className={styles.containerHome}>
+           
+
+            {filteredPodcasts.map((podcast) => {
+                return (
+                  <div key={podcast.title.label} onClick={() => handleLinkClick(podcast)} className={styles.clickPodcast}>
+                    <CardProduct 
+                    title={podcast.title.label}
+                    autor={podcast['im:artist'].label}
+                    image={podcast['im:image'][1].label}
+                    />
+                        </div>
+                )
+            })}
+      </div>
+      </div>
+      : <p>No hay podcast por el momento</p>
+    }
     </>
   );
 };

@@ -4,6 +4,7 @@ module.exports = {
         "es2021": true
     },
     "extends": [
+         "prettier",
         "eslint:recommended",
         "plugin:react/recommended"
     ],
@@ -28,15 +29,5 @@ module.exports = {
         "react"
     ],
     "rules": {
-        "react/jsx-uses-react": "error",
-        "react/jsx-uses-vars": "error",
-        "react/react-in-jsx-scope": "off"
-      },
-      "settings": {
-        "react": {
-          "version": "detect"
-        }
-      }
-
-    
+    }
 }

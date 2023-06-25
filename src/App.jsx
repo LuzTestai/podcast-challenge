@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { Provider } from 'react-redux';
 import store from './store';
@@ -8,15 +8,16 @@ import DetailEpisode from './pages/DetailEpisode/detailEpisode';
 import Navbar from './components/Navbar/navbar';
 
 function App() {
+  const [loading, setLoading] = useState(false);
   return (
     <Provider store={store}>
       <div>
         <BrowserRouter>
-          <Navbar />
+          <Navbar loading={loading}/>
                 <Routes>
-                    <Route path="/" element={< HomePage />} />
-                    <Route path="/episode" element={< DetailEpisode />} />
-                    <Route path="/podcast/:name" element={< DetailPodcast />} />
+                    <Route path="/" element={< HomePage setLoading={setLoading} />} />
+                    <Route path="/episode" element={< DetailEpisode setLoading={setLoading}  />} />
+                    <Route path="/podcast/:name" element={< DetailPodcast setLoading={setLoading} />} />
                 </Routes>
         </BrowserRouter>
       </div>

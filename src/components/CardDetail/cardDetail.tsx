@@ -33,9 +33,9 @@ const CardDetail = ({title, author, description, episodes, podcastDetail, image,
                     </tr>
                    {podcastDetail.map((pod) => {
                     return (
-                        <tr onClick={() => hiceClick(pod)} key={pod.collectionId} className={styles.cursorPointer}>
+                        <tr  key={pod.collectionId} >
                         <td>
-                        <a href={pod.collectionViewUrl}>{pod.collectionName}</a>
+                        <div onClick={() => hiceClick(pod)} className={styles.linkDiv}>{pod.collectionName}</div>
                         </td>
                         <td>{convertirFecha(pod.releaseDate)}</td>
                         <td>{convertirDuracion(pod.trackTimeMillis)}</td>
