@@ -1,5 +1,6 @@
 import React from "react";
 import styles from './cardEpisode.module.css';
+import { convertirAHTML } from "../../utils";
 
 const CardDetail = ({title, author, description, titleEpisode, image, descriptionEpisode, audio}) => {
     return (
@@ -24,8 +25,8 @@ const CardDetail = ({title, author, description, titleEpisode, image, descriptio
                     <h2>{titleEpisode}</h2>
                 </div>
                 <div>
-               
-                    <p>{descriptionEpisode} </p>
+                <div dangerouslySetInnerHTML={{ __html: convertirAHTML(descriptionEpisode) }} />
+                
                     <div>
                         <audio controls className={styles.audio}>
                             <source src={audio} type="audio/mpeg" />

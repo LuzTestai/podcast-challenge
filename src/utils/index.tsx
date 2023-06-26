@@ -1,3 +1,5 @@
+import React from "react";
+
 export const cortarStrPorGuionOComa = (str) => {
     const indexGuion = str.indexOf("-");
     const indexComa = str.indexOf(",");
@@ -19,3 +21,10 @@ export const convertirDuracion = (duracionMinutos) => {
   
   return duracionFormateada;
 }
+
+export const convertirAHTML = ( stringHTML) => {
+  const divElement = document.createElement('div');
+  divElement.innerHTML = stringHTML;
+  return divElement.innerHTML;
+  };
+

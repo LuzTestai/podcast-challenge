@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Loading from '../../components/Loading';
+import {convertirAHTML} from '../../utils';
 import CardEpisode from '../../components/CardEpisode/cardEpisode';
 import { useSelector } from 'react-redux';
 import styles from './detailEpisode.module.css';
@@ -35,7 +36,7 @@ const DetailEpisode = ({setLoading}) => {
             description={authorDetail.description}
             image={authorDetail.image}
             titleEpisode={detailEpisode.title}
-            descriptionEpisode={detailEpisode.description}
+            descriptionEpisode={convertirAHTML(detailEpisode.description)}
             audio={detailEpisode.enclosure}
             />
             </div>
