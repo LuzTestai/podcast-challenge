@@ -11,7 +11,9 @@
     justify-content: space-evenly;
     margin: 40px 10px;
   }
-  
+  .card:hover {
+    box-shadow: 0 0 10px rgba(103, 34, 252, 0.5);
+  }
   .card .image {
     border-radius: 50%;
     overflow: hidden;
